@@ -1,2 +1,18 @@
-package com.showcase.springmicrometer;public class WebConfiguration {
+package com.showcase.springmicrometer;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+@RequiredArgsConstructor
+public class WebConfiguration implements WebMvcConfigurer {
+
+    private final HeaderInterceptor headerInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(headerInterceptor);
+    }
 }
